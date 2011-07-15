@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:id="@+id/cover_flow_container_layout">
-
-	<view android:id="@+id/cover_flow" class="net.robotmedia.coverflowtest.CoverFlow"
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
-		android:background="@android:color/black" />
-	
-	<LinearLayout android:orientation="horizontal" android:id="@+id/infoViewContainer"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:visibility="visible">
-
-		<ListView android:id="@+id/info_list" android:layout_width="fill_parent"
-			android:layout_height="fill_parent" android:background="@android:color/transparent"
-			android:cacheColorHint="#00000000" />
-			
-		<TextView android:id="@+id/cover_text" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:layout_centerHorizontal="true"
-			android:layout_alignParentBottom="true" android:layout_marginBottom="20dp"
-			android:textColor="@android:color/white" android:textSize="17dp"
-			android:background="@android:color/transparent" />
-
-	</LinearLayout>
+	android:layout_height="fill_parent" android:id="@+id/cover_flow_container_layout"
+	android:background="@android:color/white">
 
 </FrameLayout>
