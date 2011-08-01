@@ -5,8 +5,8 @@ import android.widget.AdapterView;
 
 public interface CoverFlowGalleryFragmentControllerInterface {
 
-	void onItemClick(AdapterView<?> parent, View v, int position,
+	void onCoverFlowItemClick(AdapterView<?> parent, View v, int position,
 			long id);
 	
-	void onItemSelected(AdapterView<?> parent, View v, int position, long id);
+	void onCoverFlowItemSelected(AdapterView<?> parent, View v, int position, long id);
 }

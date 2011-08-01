@@ -17,15 +17,16 @@ public class CoverFlowGalleryFragment extends Fragment
 
 	private CoverFlowGallery	                        mCoverFlow;
 	private CoverFlowImageAdapter	                    mCoverFlowAdapter;
+	private int	                                        mCoverFlowType;
+	private View										mCurrentView;
 
 	private CoverFlowGalleryFragmentControllerInterface	mControllerInterface;
 
-	public static CoverFlowGalleryFragment getNewInstance(CoverFlowImageAdapter adapter,
-	        CoverFlowGallery coverFlowWidget)
+	public static CoverFlowGalleryFragment getNewInstance(CoverFlowImageAdapter adapter, int coverFlowType)
 	{
 		CoverFlowGalleryFragment fragment = new CoverFlowGalleryFragment();
 		fragment.setAdapter(adapter);
-		fragment.setCoverFlowWidget(coverFlowWidget);
+		fragment.setCoverFlowWidget(coverFlowType);
 		return fragment;
 	}
 
@@ -48,13 +49,15 @@ public class CoverFlowGalleryFragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	        Bundle savedInstanceState)
 	{
-
 		FrameLayout contentView = new FrameLayout(getActivity());
 		contentView.setId(1);
-		contentView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-		        LayoutParams.MATCH_PARENT));
+		contentView.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+		        LayoutParams.FILL_PARENT));
 
+		mCoverFlow = CoverFlowFactory.getInstance().buildCoverFlowWidget(	getActivity(), mCoverFlowType);
+		
 		mCoverFlow.setAdapter(mCoverFlowAdapter);
+
 		contentView.addView(mCoverFlow);
 
 		mCoverFlow.setOnItemClickListener(new OnItemClickListener() {
@@ -62,7 +65,7 @@ public class CoverFlowGalleryFragment extends Fragment
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id)
 			{
 				// Call controller Activity to perform business logic
-				mControllerInterface.onItemClick(parent, v, position, id);
+				mControllerInterface.onCoverFlowItemClick(parent, v, position, id);
 			}
 		});
 
@@ -71,7 +74,8 @@ public class CoverFlowGalleryFragment extends Fragment
 			public void onItemSelected(AdapterView<?> parent, View v, int position,
 			        long id)
 			{
-				mControllerInterface.onItemSelected(parent, v, position, id);
+			
+				mControllerInterface.onCoverFlowItemSelected(parent, v, position, id);
 			}
 
 			public void onNothingSelected(AdapterView<?> parent)
@@ -88,9 +92,15 @@ public class CoverFlowGalleryFragment extends Fragment
 		mCoverFlowAdapter = coverFlowAdapter;
 	}
 
-	private void setCoverFlowWidget(CoverFlowGallery coverFlowWidget)
+	private void setCoverFlowWidget(int coverflowType ) 
 	{
-		mCoverFlow = coverFlowWidget;
+		mCoverFlowType = coverflowType;
+	}
+	
+	public String getCurrentImageId()
+	{
+		return "currentImage";
+//		return mCurrentView.getBackground();
 	}
 
 }

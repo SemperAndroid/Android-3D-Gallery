@@ -2,13 +2,13 @@ package net.robotmedia.android.coverflow;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Bitmap.Config;
 import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
@@ -44,12 +44,15 @@ public class ReflectionImageAdapter extends CoverFlowImageAdapter
 			return null;
 		}
 		Bitmap originalImage = item.getBitmap();
+		
 		int width = originalImage.getWidth();
 		int height = originalImage.getHeight();
+		
+		
 
 		// This will not scale but will flip on the Y axis
 		Matrix matrix = new Matrix();
-		matrix.preScale(1, -1);
+		matrix.preScale(1, -1);			
 
 		// Create a Bitmap with the flip matrix applied to it.
 		// We only want the bottom half of the image
